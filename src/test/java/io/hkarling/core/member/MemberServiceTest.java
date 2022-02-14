@@ -1,13 +1,21 @@
 package io.hkarling.core.member;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import io.hkarling.core.AppConfig;
+import io.hkarling.core.discount.DiscountPolicy;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class MemberServiceTest {
 
-    MemberService memberService = new MemberServiceImpl(); // DIP 위반. 추상화에도 의존하고 구현체에도 의존함
+//    MemberService memberService = new MemberServiceImpl(memberRepository); // DIP 위반. 추상화에도 의존하고 구현체에도 의존함
+    MemberService memberService;
+
+    @BeforeEach
+    public void beforeEach() {
+        AppConfig appConfig = new AppConfig();
+        memberService = appConfig.memberService();
+    }
 
     @Test
     void join() {

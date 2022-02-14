@@ -1,18 +1,25 @@
 package io.hkarling.core.order;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import io.hkarling.core.AppConfig;
 import io.hkarling.core.member.Grade;
 import io.hkarling.core.member.Member;
 import io.hkarling.core.member.MemberService;
 import io.hkarling.core.member.MemberServiceImpl;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class OrderTest {
 
-    MemberService memberService = new MemberServiceImpl();
-    OrderService orderService = new OrderServiceImpl();
+    MemberService memberService;
+    OrderService orderService;
+
+    @BeforeEach
+    public void beforeEach() {
+        AppConfig appConfig = new AppConfig();
+        memberService = appConfig.memberService();
+        orderService = appConfig.orderService();
+    }
 
     @Test
     void createOrder() {
