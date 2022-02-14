@@ -1,6 +1,9 @@
 package io.hkarling.core;
 
+import io.hkarling.core.discount.DiscountPolicy;
 import io.hkarling.core.discount.FixDiscountPolicy;
+import io.hkarling.core.discount.RateDiscountPolicy;
+import io.hkarling.core.member.MemberRepository;
 import io.hkarling.core.member.MemberService;
 import io.hkarling.core.member.MemberServiceImpl;
 import io.hkarling.core.member.MemoryMemberRepository;
@@ -16,11 +19,23 @@ import io.hkarling.core.order.OrderServiceImpl;
 public class AppConfig {
 
     public MemberService memberService() {
-        return new MemberServiceImpl(new MemoryMemberRepository());
+        return new MemberServiceImpl(memberRepository());
     }
 
     public OrderService orderService() {
-        return new OrderServiceImpl(new MemoryMemberRepository(), new FixDiscountPolicy());
+        return new OrderServiceImpl(memberRepository(), discountPolicy());
+    }
+
+    /**
+     * 역할을 고려한 구현
+     */
+    public MemberRepository memberRepository() {
+        return new MemoryMemberRepository();
+    }
+
+    public DiscountPolicy discountPolicy() {
+        // return new FixDiscountPolicy(); // 할인정책 변경 시 여기만 수정하면 된다
+        return new RateDiscountPolicy();
     }
 
 }
