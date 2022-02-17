@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Configuration;
  * 애플리케이션의 실제 동작에 필요한 구현 객체를 생성한다.
  * 생성한 객체 인스턴스의 참조를 생성자를 통해서 주입(연결)해준다.
  */
-@Configuration
+@Configuration // 삭제 시 싱글톤이 깨져버린다
 public class AppConfig {
 
     // @Bean memberService -> new MemoryMemberRepository()
@@ -28,7 +28,6 @@ public class AppConfig {
     // call AppConfig.memberRepository
     // call AppConfig.memberRepository
     // call AppConfig.orderService
-    // call AppConfig.memberService
     // call AppConfig.memberRepository
 
     // call AppConfig.memberService
