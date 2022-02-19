@@ -2,7 +2,9 @@ package io.hkarling.core.discount;
 
 import io.hkarling.core.member.Grade;
 import io.hkarling.core.member.Member;
+import org.springframework.stereotype.Component;
 
+@Component
 public class RateDiscountPolicy implements DiscountPolicy {
 
     private int discountPercent = 10;
