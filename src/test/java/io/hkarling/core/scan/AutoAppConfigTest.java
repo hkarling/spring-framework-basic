@@ -1,5 +1,7 @@
 package io.hkarling.core.scan;
 
+import static org.assertj.core.api.Assertions.*;
+
 import io.hkarling.core.AutoAppConfig;
 import io.hkarling.core.member.MemberService;
 import org.assertj.core.api.Assertions;
@@ -16,7 +18,8 @@ public class AutoAppConfigTest {
         ApplicationContext ac = new AnnotationConfigApplicationContext(AutoAppConfig.class);
         MemberService memberService = ac.getBean(MemberService.class);
 
-        Assertions.assertThat(memberService).isInstanceOf(MemberService.class);
+        assertThat(memberService).isInstanceOf(MemberService.class);
+
     }
 
 }
