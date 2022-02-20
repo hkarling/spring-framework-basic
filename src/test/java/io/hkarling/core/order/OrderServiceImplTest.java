@@ -22,7 +22,7 @@ class OrderServiceImplTest {
     void CreatOrder() {
 //        OrderServiceImpl orderService = new OrderServiceImpl(); // 의존관계를 뭘 넣어야 되는지? 누락된다
         OrderServiceImpl orderService = new OrderServiceImpl(new MemoryMemberRepository(), new FixDiscountPolicy());
-        orderService.createOrder(1L, "itemA", 10000);
+        //orderService.createOrder(1L, "itemA", 10000);
     }
 
 }

@@ -3,10 +3,12 @@ package io.hkarling.core.order;
 import io.hkarling.core.discount.DiscountPolicy;
 import io.hkarling.core.member.Member;
 import io.hkarling.core.member.MemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
 //    @Autowired // 3. 필드 주입 - 외부에서 변경이 불가능하여 DI 프레임워크 없이 테스트가 안됨. 지양하라
@@ -19,12 +21,12 @@ public class OrderServiceImpl implements OrderService {
      *  - 불변, 필수 의존관계에 사용
      *  - 스프링 빈이고 생성자 1개일 시 @Autowired 생략 가능
      */
-    @Autowired
+    /*@Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         System.out.println("1. OrderServiceImpl.OrderServiceImpl");
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
-    }
+    }*/
 
     /* 2. 수정자 주입
      * - setter 라 불리는 필드의 값을 변경하는 수정자 메서드를 통하여 의존관계를 주입
