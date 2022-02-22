@@ -1,5 +1,7 @@
 package io.hkarling.core.lifecycle;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 
@@ -36,6 +38,7 @@ public class NetworkClient { //implements InitializingBean, DisposableBean {
     }
 
    //@Override
+    @PostConstruct
     public void init() throws Exception {
         System.out.println("NetworkClient.init");
         connect();
@@ -43,15 +46,24 @@ public class NetworkClient { //implements InitializingBean, DisposableBean {
     }
 
     //@Override
+    @PreDestroy
     public void close() throws Exception {
         System.out.println("NetworkClient.close");
         disconnect();
     }
 
-    /**
-     * 초기화, 소멸 인터페이스 단점
+    /*
+     * 1. 초기화, 소멸 인터페이스 단점
      *  - 스프링 전용 인터페이스에 의존한다
      *  - 초기화, 소멸 메서드의 이름 변경할 수 없다
      *  - 내가 코드를 고칠 수 없는 외부 라이브러리에 적용 불가
+     */
+
+    /**
+     * 3. @PostConstruct, @PreDestroy
+     *  - 최신 스프링에서 가장 권장
+     *  - javax.annotation 패키지 (자바표준)
+     *  - 컴포넌트 스캔과도 잘 어울린다
+     *  - 외부 라이브러리는 설정 불가. @Bean 기능을 사용한다
      */
 }
