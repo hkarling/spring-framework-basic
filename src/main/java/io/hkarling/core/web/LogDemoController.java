@@ -14,13 +14,16 @@ public class LogDemoController {
 
     private final LogDemoService logDemoService;
 //    private final MyLogger myLogger; // request 스코프 빈을 어플리케이션 로딩 시점에 요청. 오류남
-    private final ObjectProvider<MyLogger> myLoggerProvider;
+//    private final ObjectProvider<MyLogger> myLoggerProvider;
+    private final MyLogger myLogger; // proxy 객체가 들어온다
 
     @RequestMapping("log-demo")
     @ResponseBody
     public String logDemo(HttpServletRequest request) throws InterruptedException {
         String requestURL = request.getRequestURL().toString();
-        MyLogger myLogger = myLoggerProvider.getObject();
+
+        System.out.println("myLogger = " + myLogger.getClass()); // class io.hkarling.core.common.MyLogger$$EnhancerBySpringCGLIB$$72de8ed2
+//        MyLogger myLogger = myLoggerProvider.getObject();
         myLogger.setRequestURL(requestURL);
         myLogger.log("controller test");
         Thread.sleep(1000);
